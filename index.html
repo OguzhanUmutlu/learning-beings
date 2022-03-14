@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NN</title>
+</head>
+<body>
+<canvas id="canvas" style="position: absolute; left: 0; top: 0"></canvas>
+<span id="stats" style="position: absolute; left: 0; top: 0; font-family: Calibri, serif"></span>
+<script src="learning.js"></script>
+<script>
+    /*** @type {HTMLCanvasElement} */
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    runLearning(
+        {
+            canvas,
+            rule: entity => entity.y > 50,
+            endRule: entity => true,
+            ruleRender: () => {
+                ctx.beginPath();
+                ctx.fillStyle = "red";
+                ctx.strokeStyle = "red";
+                ctx.fillRect(0, 50, canvas.width, 1);
+                ctx.closePath();
+            },
+            speed: 2,
+            maxIteration: 200,
+            entityAmount: 200,
+            startX: 200,
+            startY: 100,
+            skipToGeneration: 0
+        }
+    );
+</script>
+</body>
+</html>
